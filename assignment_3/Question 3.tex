@@ -1,0 +1,149 @@
+
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{placeins}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand*\ol[1]{\overline{#1}}
+\graphicspath{ {C:/Users/affan/Pictures/Screenshots/} }
+\DeclareMathOperator{\spn}{span}
+\newcommand{\p}[1]{\left ( #1\right )}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*{\img}[1]{%
+    \raisebox{-.02\baselineskip}{%
+        \includegraphics[
+        height=\baselineskip,
+        width=\baselineskip,
+        keepaspectratio,
+        ]{#1}%
+    }%
+}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+
+ 
+\title{Question 3}
+\author{Affan Khadir\\ 
+CTA 200}
+\pagecolor{white}
+\color{black}
+ 
+\maketitle
+
+\begin{question}1
+We have been given the function: 
+\begin{align*}
+    f(c) = z^2 + c
+\end{align*}
+which is defines recursively, and that $c \in \{w = x+ iy: x \in [-2,2], y\in [-2, 2] \}$. We want to determine all the points for which the function stays bounded. 
+\begin{lemma}1
+    We claim that for all $|z_i|>2$, the function diverges
+\end{lemma}
+\begin{proof}
+    Suppose that $|z_i|>2 $ Suppose that $|z_i| = 2 + \lambda$ where $\lambda>0 $. There are two cases that we must consider. \\
+    \textbf{Case 1} When $|c|\leq 2$. We want to show that $|z_{i+k}| \geq 2 + (k+1)\lambda $ We will proceed by mathematical induction. Here, observe that: 
+    \begin{align*}
+        |z_{i+1}| = |z^2 + c| \geq |z^2| - |c| \geq |z|^2 - |c|\geq (2+\lambda)^2 - 2 > 2 + 2\lambda 
+    \end{align*}
+    In the above, we have used the fact that $|z^2|= |z|^2 $ for all complex numbers. Thus, the lemma holds true for $k=1$. 
+    Assume that the lemma holds true for all $|z_{i+j}|: j\leq k$. We must now prove that it holds for $k + 1$. 
+    \begin{align*}
+        |z_{i+k+1}|  = |z_{i+k}^2 +c | \geq |z^2_{i+k}| -|c| \geq (2+(k+1)\lambda)^2 - 2 \geq 2 + (k+2) \lambda 
+    \end{align*}
+    Then, observe that: 
+    \begin{align*}
+        \lim_{k\to \infty} |z_{i+k}|= \lim_{k\to \infty } 2 + (k+1) \lambda =\infty
+    \end{align*}
+    Thus, the function diverges for these values of $c$. \\
+    \textbf{Case 2}. Now, we will prove that it diverges for $|c|> 2$. Consider two possible sub-cases:\\
+    (A) $2< |c| < |z_i| $: Here, we claim that $|z_{i+k}| \geq 2+ (k+1) \lambda $
+    \begin{align*}
+        |z_{i+1}|= |z_i^2 + c| \geq |z_i^2| - |c| \geq 2 + 2\lambda
+    \end{align*}
+    Following a similar argument as in \textbf{Case 1}, we can prove that our claim is true. Then: 
+    \begin{align*}
+        \lim_{k\to \infty} |z_{i+k} | = \lim_{k\to \infty} 2+ (k+1) \lambda = \infty
+    \end{align*}
+    (B) $2<|z_i|<|c|$ Here we will again split it into two further sub-cases.\\
+    (i) $|z_i^2|>|c|$. Then, we can proceed by a similar argument as in the first case and get that $|z_{i+k}|\to \infty $ as $k\to \infty$. \\
+    (ii) $|c| > |z_i^2| $. Assume that $|c| = |z_i^2| + \beta $ for some $\beta> 0$. Then: 
+    \begin{align*}
+        |z_{i+1}| = |z_i^2 + c| \geq |c| - |z_i^2| > |c| 
+    \end{align*}
+    Then, we will end up in case A, so the lemma holds true. \\
+Thus, it has been proven that the function diverges for all $|z_i| >2$. 
+\end{proof}
+From this, we know that all points that we can set a rough criteria of divergence to be if some $|z_i|>2$ in the iteration. Therefore, that is the criteria of divergence that we will be using. We will be running roughly a 10 iterations, claiming that if the function doesn't diverge in ten iterations then it doesn't diverge at all. Using this criteria, we find a rough estimate for the points to be: \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{CTA200/Mandelborot.png}
+    \caption{Plot displaying the set of points that remain bounded. }
+    \label{fig:my_label}
+\end{figure}
+Now, we will find the iteration number for which the function diverges. To do this, we will find $i: |z_i|>2$. \\
+\begin{figure}[H]
+    \centering
+    \includegraphics{CTA200/Mandelborot colour.png}
+    \caption{Plot displaying the iteration number at which points diverge.}
+    \label{fig:my_label}
+\end{figure}
+\FloatBarrier\\
+\end{question}
+
+\begin{question}2
+    Here, we will be analyzing the three Fourier modes that give the Lorenz equations: 
+    \begin{align*}
+        \dot{X}  &= \sigma (X-Y) \\
+        \dot{Y} & = rX- Y-XZ\\
+        \dot{Z} & = -bZ+ XY
+    \end{align*}
+    Once a python function is written for $W  = (X, Y, Z)$, we can use solve\_ivp to solve the equation with the given initial conditions $W_0 = (0, 1, 0)$ and $(\sigma, r, b) = (10, 28, 8/3) $
+    \begin{figure}[h]
+        \centering
+        \includegraphics[scale = 0.7]{CTA200/Lorenz.png}
+        \caption{A plot showing the value of the $Y$ Fourier mode against the number of iterations. Here, the number of iterations is represented as $t/\delta t$, where $\delta t = 0.01$}
+        \label{fig:my_label}
+    \end{figure}\\
+    \begin{figure}
+        \centering
+        \includegraphics[scale =0.7]{CTA200/Lorenz2.png}
+        \caption{A plot showing the phase portrait of $Z$ against $Y$ AND $X$ against $Y$.}
+        \label{fig:my_label}
+    \end{figure}
+    Now, we will perturb the initial conditions slightly, and observe the change that this cause in $W$
+    \begin{figure}
+        \centering
+        \includegraphics[scale = 0.7] {CTA200/Lorenz3.png}
+        \caption{A plot of the logarithmic distance between $W$ and $W' $ against time. $W$ started with initial conditions $W_0 = (0, 1, 0)$ and the initial conditions for $W' $ were $W_0' =(0, 1 + 1\times 10^{-8} , 0)$}
+        \label{fig:my_label}
+    \end{figure}
+\end{question}
+
+
+\end{document}
